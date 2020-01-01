@@ -9,7 +9,8 @@
       "request": "launch",
       "name": "(App) Launch Program",
       "cwd": "${workspaceFolder}/app",
-      "program": "${workspaceFolder}/app/bin/app.js"
+      "program": "${workspaceFolder}/app/bin/app.js",
+      "port": 9229
     },
     {
       "type": "node",
@@ -23,7 +24,8 @@
       "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/app/node_modules/jest/bin/jest",
-      }
+      },
+      "port": 9229
     },
     {
       "type": "node",
@@ -41,7 +43,8 @@
       "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/app/node_modules/jest/bin/jest",
-      }
+      },
+      "port": 9229
     }
   ]
 }
