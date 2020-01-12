@@ -1,0 +1,2 @@
+# Avoid adding anything to build context (it all gets passed in via volumes/mounts, so this just slows things down)
+*

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-FROM node:12
+FROM node:12.14
 
 # The node image includes a non-root user with sudo access. Use the "remoteUser"
 # property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
@@ -16,9 +16,16 @@ ARG USER_GID=$USER_UID
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Configure Git to use VIM for editing by default
+ENV VISUAL=vim
+ENV EDITOR="$VISUAL"
+
 # Configure apt and install packages
 RUN apt-get update \
     && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
+    #
+    # Install VIM
+    && apt-get -y install vim \
     #
     # Verify git and needed tools are installed
     && apt-get -y install git iproute2 procps \

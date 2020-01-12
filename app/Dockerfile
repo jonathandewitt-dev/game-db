@@ -12,16 +12,17 @@ RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 USER node
 COPY --chown=node:node package.json package-lock*.json ./
-RUN npm ci --no-optional && npm cache clean --force
+RUN npm ci --only=production && npm cache clean --force
 
 
 # ---
-# docker build -t game-db:0.1.0-dev --target dev .
+# docker run --rm -p 9229:9229 game-db:0.1.0-dev
 FROM base AS dev
 ENV NODE_ENV=development
 ENV PATH=/app/node_modules/.bin:$PATH
-RUN npm install --only=development --no-optional
+RUN npm install --only=development
 EXPOSE 9229
+ENTRYPOINT []
 CMD ["nodemon", "--inspect=0.0.0.0:9229", "./bin/app.js"]
 
 
