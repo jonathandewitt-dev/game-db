@@ -1,3 +1,17 @@
+# Project: GameDB
+
+This project was created using (vscode-remote-try-node)[https://github.com/Microsoft/vscode-remote-try-node] and then heavily modified to:
+- Make VSCode-specific config optional
+- Support multiple roots
+- Add Jest testing + debugging
+- Remove dependency on yarn
+- Add .editorconfig support
+- Add Docker-in-Docker support
+
+You can find the original documentation from vscode-remote-try-node below...
+
+---
+
 # Try Out Development Containers: Node.js
 
 This is a sample project that lets you try out the **[VS Code Remote - Containers](https://aka.ms/vscode-remote/containers)** extension in a few easy steps.
