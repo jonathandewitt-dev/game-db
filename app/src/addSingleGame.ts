@@ -1,11 +1,4 @@
 import Game from './types/Game'
-import testDB from './testDB'
+import DB from './types/DB'
 
-export default async (game: Game): Promise<Game> => {
-  const newGame = {
-    ...game,
-    id: testDB.games.length + 1,
-  }
-  testDB.games.push(newGame)
-  return Promise.resolve(newGame)
-}
+export default async (db: DB, game: Game): Promise<Game> => db.addGame(game)

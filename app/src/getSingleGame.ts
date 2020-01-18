@@ -1,5 +1,4 @@
 import Game from './types/Game'
-import testDB from './testDB'
+import DB from './types/DB'
 
-export default async (id: number): Promise<Game> =>
-  Promise.resolve(testDB.games.find(g => g.id === id))
+export default async (db: DB, id: number): Promise<Game> => db.getGame(id)
