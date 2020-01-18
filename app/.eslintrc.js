@@ -1,10 +1,10 @@
 module.exports = {
   plugins: [ 'jest' ],
 
-  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
+    project: './tsconfig.json'
   },
 
   root: true,
@@ -14,7 +14,7 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
-    'standard',
+    'standard-with-typescript',
     'plugin:jest/all',
   ],
   rules: {

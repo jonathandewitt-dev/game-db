@@ -1,6 +1,7 @@
-import testDB from './testDB.js'
+import Game from './types/Game'
+import testDB from './testDB'
 
-export default game => {
+export default async (game: Game): Promise<Game> => {
   const newGame = {
     ...game,
     id: testDB.games.length + 1,

@@ -61,9 +61,11 @@ cat > .vscode/launch.json << EOM
       "request": "launch",
       "name": "(App) Launch Program",
       "cwd": "\${workspaceFolder}/app",
-      "program": "\${workspaceFolder}/app/bin/app.js",
+      "program": "\${workspaceFolder}/app/src/index.ts",
+      "outFiles": ["\${workspaceFolder}/app/dist/**/*.js"],
       "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
+      "internalConsoleOptions": "neverOpen",
+      "preLaunchTask": "(App) Build"
     },
     {
       "type": "node",
@@ -78,7 +80,8 @@ cat > .vscode/launch.json << EOM
       "windows": {
         "program": "\${workspaceFolder}/app/node_modules/jest/bin/jest",
       },
-      "timeout": 25000
+      "timeout": 25000,
+      "preLaunchTask": "(App) Build"
     },
     {
       "type": "node",
@@ -97,7 +100,8 @@ cat > .vscode/launch.json << EOM
       "windows": {
         "program": "\${workspaceFolder}/app/node_modules/jest/bin/jest",
       },
-      "timeout": 25000
+      "timeout": 25000,
+      "preLaunchTask": "(App) Build"
     }
   ]
 }
@@ -140,5 +144,23 @@ cat > .vscode/test.code-snippets << EOM
     ],
     "description": "Add a new Jest test"
   }
+}
+EOM
+
+touch .vscode/tasks.json
+cat > .vscode/tasks.json << EOM
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "(App) Build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "type": "shell",
+      "command": "(cd ./app && npm run build)"
+    }
+  ]
 }
 EOM

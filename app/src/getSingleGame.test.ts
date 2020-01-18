@@ -1,4 +1,4 @@
-import getSingleGame from './getSingleGame.js'
+import getSingleGame from './getSingleGame'
 
 describe('get single game', () => {
   it('should get one game', async () => {
