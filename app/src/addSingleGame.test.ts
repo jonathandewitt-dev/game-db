@@ -1,16 +1,12 @@
-import Game from './types/Game'
 import addSingleGame from './addSingleGame'
-import getSingleGame from './getSingleGame'
-import TestDB from './testDB'
-
-const testDB = new TestDB()
+import VolatileDB from './db/VolatileDB'
 
 describe('add single game', () => {
-  it('should add one game', async () => {
+  it('should return the added game + id', async () => {
     expect.assertions(1)
-    const gameData: Game = { title: 'Blaster Master' }
-    const game = await addSingleGame(testDB, gameData)
-    const resultGame = await getSingleGame(testDB, game.id)
-    expect(resultGame).toStrictEqual(game)
+    const testGame = { title: 'Blaster Master' }
+    const volatileDB = new VolatileDB()
+    const game = await addSingleGame(volatileDB, testGame)
+    expect(game).toStrictEqual({ id: game.id, ...testGame })
   })
 })

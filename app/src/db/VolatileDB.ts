@@ -1,17 +1,12 @@
-import DB from './types/DB'
-import Game from './types/Game'
+import DB from '../types/DB'
+import Game from '../types/Game'
 
-class TestDB implements DB {
-  private readonly _games: Game[] = [
-    {
-      id: 1,
-      title: 'Blaster Master',
-    },
-    {
-      id: 2,
-      title: 'Super Mario Bros 2',
-    },
-  ]
+export default class VolatileDB implements DB {
+  private readonly _games: Game[] = []
+
+  constructor({ games = [] }: { games: Game[] } = { games: [] }) {
+    this._games = games
+  }
 
   async getGame(id: number): Promise<Game> {
     return Promise.resolve(this._games.find((g: Game) => g.id === id))
@@ -26,5 +21,3 @@ class TestDB implements DB {
     return Promise.resolve(newGame)
   }
 }
-
-export default TestDB
