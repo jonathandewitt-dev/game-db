@@ -32,5 +32,6 @@ module.exports = {
       allowArrowFunctions: true,
     }],
     'no-var': 'error',
+    '@typescript-eslint/prefer-function-type': 'off'
   },
 }

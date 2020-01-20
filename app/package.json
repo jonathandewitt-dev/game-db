@@ -9,6 +9,9 @@
   ],
   "main": "dist/index.js",
   "private": true,
+  "bin": {
+    "game-db": "./bin/cli"
+  },
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc",
