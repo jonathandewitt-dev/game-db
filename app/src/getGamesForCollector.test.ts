@@ -1,8 +1,8 @@
-import getCollectorGames from './getCollectorGames'
+import getGamesForCollector from './getGamesForCollector'
 import VolatileDB from './db/VolatileDB'
 
-describe('get collector games', () => {
-  it('finds and returns collector by id with array of games', async () => {
+describe('get games for collector', () => {
+  it('finds and returns collector by id + array of associated games', async () => {
     expect.assertions(1)
     const games = [
       { id: 1, title: 'Blaster Master' },
@@ -12,7 +12,7 @@ describe('get collector games', () => {
     const collector = { id: 1, displayName: 'test', games: [1, 3] }
     const volatileDB = new VolatileDB({ collectors: [collector], games })
 
-    const collectorGames = await getCollectorGames(volatileDB, collector.id)
+    const collectorGames = await getGamesForCollector(volatileDB, collector.id)
 
     expect(collectorGames).toStrictEqual({
       collector,

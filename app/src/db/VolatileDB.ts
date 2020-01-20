@@ -17,7 +17,7 @@ export default class VolatileDB implements DB {
     this._games = games
   }
 
-  async getCollectorGames(collectorID: number): Promise<{ collector: Collector, games: Game[] }> {
+  async getGamesForCollector(collectorID: number): Promise<{ collector: Collector, games: Game[] }> {
     const collector = this._collectors.find((u: Collector) => u.id === collectorID)
     return {
       collector,

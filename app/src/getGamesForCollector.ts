@@ -9,4 +9,4 @@ export default async (
   collector: Collector
   games: Game[]
 }> =>
-  db.getCollectorGames(collectorId)
+  db.getGamesForCollector(collectorId)
