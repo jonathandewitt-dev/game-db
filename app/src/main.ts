@@ -3,6 +3,7 @@ import createDB from './db/volatile'
 import addGame from './domain/addGame'
 import viewGame from './domain/viewGame'
 import viewGamesForCollector from './domain/viewGamesForCollector'
+import linkGameToCollector from './domain/linkGameToCollector'
 import inquirer from 'inquirer'
 
 export default async ({ env, args }: { env: string, args: string[] }): Promise<void> => {
@@ -51,6 +52,14 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
         limit,
         firstId,
       })
+    },
+
+    linkGameToCollector: async () => {
+      const { collectorId, gameId } = await inquirer.prompt([
+        { name: 'collectorId', message: 'Enter collectorId:', type: 'number' },
+        { name: 'gameId', message: 'Enter gameId:', type: 'number' },
+      ])
+      return linkGameToCollector(ui.linkGameToCollector, db.linkGameToCollector, collectorId, gameId)
     },
   }
   // @ts-ignore
