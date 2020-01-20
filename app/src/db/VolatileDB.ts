@@ -1,11 +1,28 @@
 import DB from '../types/DB'
+import Collector from '../types/Collector'
 import Game from '../types/Game'
 
 export default class VolatileDB implements DB {
+  private readonly _collectors: Collector[] = []
   private readonly _games: Game[] = []
 
-  constructor({ games = [] }: { games: Game[] } = { games: [] }) {
+  constructor({
+    collectors = [],
+    games = [],
+  }: {
+    collectors?: Collector[]
+    games?: Game[]
+  } = {}) {
+    this._collectors = collectors
     this._games = games
+  }
+
+  async getCollectorGames(collectorID: number): Promise<{ collector: Collector, games: Game[] }> {
+    const collector = this._collectors.find((u: Collector) => u.id === collectorID)
+    return {
+      collector,
+      games: await Promise.all<Game>(collector.games.map(this.getGame.bind(this))),
+    }
   }
 
   async getGame(id: number): Promise<Game> {
