@@ -1,5 +1,5 @@
 import ui from '../../ui/cli/viewGamesForCollector'
-import VolatileDB from '../../db/VolatileDB'
+import createDB from '../../db/volatile'
 import viewGamesForCollector from '../../domain/viewGamesForCollector'
 
 describe('view games associated with a collector', () => {
@@ -19,7 +19,7 @@ describe('view games associated with a collector', () => {
         { id: 6, title: 'Teenage Mutant Ninja Turtles' },
       ],
     }
-    const db = new VolatileDB(dbData)
+    const db = await createDB(dbData)
     const collector = dbData.collectors[0]
     const pagination = {
       limit: 3,
