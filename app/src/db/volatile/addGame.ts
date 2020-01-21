@@ -1,5 +1,5 @@
-import DBData from '../../types/DBData'
-import Game from '../../types/Game'
+import DBData from '../types/DBData'
+import Game from '../../domain/types/Game'
 
 export default async (data: DBData, game: Game): Promise<Game> => {
   const newGame = {

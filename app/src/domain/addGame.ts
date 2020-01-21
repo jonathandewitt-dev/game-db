@@ -1,10 +1,10 @@
-import Game from '../types/Game'
+import Game from './types/Game'
 
-export interface AddGameUI<T> {
+interface AddGameUI<T> {
   (game: Game): T
 }
 
-export interface AddGameDB {
+interface AddGameDB {
   (game: Game): Promise<Game>
 }
 

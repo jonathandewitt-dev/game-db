@@ -1,7 +1,7 @@
-import DBData from '../../types/DBData'
-import Collector from '../../types/Collector'
-import Game from '../../types/Game'
-import Pagination from '../../types/Pagination'
+import DBData from '../types/DBData'
+import Collector from '../../domain/types/Collector'
+import Game from '../../domain/types/Game'
+import Pagination from '../../domain/types/Pagination'
 
 export default async (
   data: DBData,

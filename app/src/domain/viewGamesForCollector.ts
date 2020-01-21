@@ -1,6 +1,6 @@
-import Collector from '../types/Collector'
-import Game from '../types/Game'
-import Pagination from '../types/Pagination'
+import Collector from './types/Collector'
+import Game from './types/Game'
+import Pagination from './types/Pagination'
 
 interface GamesForCollectorUI<T> {
   ({
