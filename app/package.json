@@ -20,11 +20,14 @@
     "lint": "eslint --ext .js,.ts ./src/**",
     "prepublish": "npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "inquirer": "^7.0.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@types/inquirer": "^6.5.0",
     "@types/jest": "^24.9.0",
     "@types/node": "^13.1.8",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
