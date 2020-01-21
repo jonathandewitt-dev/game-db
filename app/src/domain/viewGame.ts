@@ -1,4 +1,4 @@
-import Game from './types/Game'
+import Game from './interfaces/Game'
 
 interface GameUI<T> {
   (game: Game): T

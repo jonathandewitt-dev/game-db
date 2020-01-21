@@ -10,7 +10,8 @@ This file represents the interface between the application and the environment (
 const { NODE_ENV = 'development' } = process.env
 
 // Pass configuration to application
-main({ env: NODE_ENV, args: process.argv })
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+main({ env: NODE_ENV, args: process.argv.slice(2) })
 
 // Need this in docker container to properly exit since Node doesn't handle SIGINT/SIGTERM
 // (this also won't work when using npm start)

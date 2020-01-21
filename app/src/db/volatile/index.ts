@@ -1,4 +1,4 @@
-import DBData from '../types/DBData'
+import DBData from '../interfaces/DBData'
 import addGame from './addGame'
 import getGame from './getGame'
 import getGamesForCollector from './getGamesForCollector'
