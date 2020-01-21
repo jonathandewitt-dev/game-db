@@ -1,9 +1,12 @@
-import DB from '../types/DB'
 import Game from '../types/Game'
 
-interface AddGameUI<T> {
+export interface AddGameUI<T> {
   (game: Game): T
 }
 
-export default async <T>(ui: AddGameUI<T>, db: DB, game: Game): Promise<T> =>
-  ui(await db.addGame(game))
+export interface AddGameDB {
+  (game: Game): Promise<Game>
+}
+
+export default async <T>(ui: AddGameUI<T>, db: AddGameDB, game: Game): Promise<T> =>
+  ui(await db(game))

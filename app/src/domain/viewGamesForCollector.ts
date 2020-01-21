@@ -1,4 +1,3 @@
-import DB from '../types/DB'
 import Collector from '../types/Collector'
 import Game from '../types/Game'
 import Pagination from '../types/Pagination'
@@ -15,10 +14,18 @@ interface GamesForCollectorUI<T> {
   }): T
 }
 
+interface GetGamesForCollectorDB {
+  (collectorID: number, pagination: Pagination): Promise<{
+    collector: Collector
+    games: Game[]
+    pagination: Pagination
+  }>
+}
+
 export default async <T>(
   ui: GamesForCollectorUI<T>,
-  db: DB,
+  db: GetGamesForCollectorDB,
   collectorId: number,
   pagination: Pagination,
 ): Promise<T> =>
-  ui(await db.getGamesForCollector(collectorId, pagination))
+  ui(await db(collectorId, pagination))

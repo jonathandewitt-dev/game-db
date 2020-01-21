@@ -1,28 +1,19 @@
-import DB from '../../types/DB'
 import DBData from '../../types/DBData'
 import addGame from './addGame'
 import getGame from './getGame'
 import getGamesForCollector from './getGamesForCollector'
 
-const functionEntries = Object.entries({
-  getGamesForCollector,
-  addGame,
-  getGame
-})
-
-export default async (seedData: DBData = {}): Promise<DB> => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export default async (seedData: DBData = {}) => {
   const dbData = Object.assign({
     collectors: [],
     games: [],
   }, seedData)
 
-  const closureEntries = functionEntries.map(([key, fn]) =>
-    // @ts-ignore
-    [key, async (...args: any[]) => fn(dbData, ...args)]
-  )
-
-  // @ts-ignore
-  const db = Object.fromEntries<DB>(closureEntries)
-
-  return Promise.resolve(db)
+  // NOTE: Cannot DRY this up because the TypeScript compiler loses track of types
+  return Promise.resolve({
+    getGamesForCollector: getGamesForCollector.bind(this, dbData),
+    addGame: addGame.bind(this, dbData),
+    getGame: getGame.bind(this, dbData),
+  })
 }

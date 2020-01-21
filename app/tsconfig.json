@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
       "module": "commonjs",
+      "strictBindCallApply": true,
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "target": "es2020",
