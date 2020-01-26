@@ -6,44 +6,30 @@ mkdir -p .devcontainer
 touch .devcontainer/devcontainer.json
 cat > .devcontainer/devcontainer.json << EOM
 {
-    "name": "Game-DB Dev Container",
-    "dockerFile": "../dev.Dockerfile",
+  "name": "Game-DB Dev Container",
+  "dockerComposeFile": "../dev.docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/game-db",
 
-    // Use 'appPort' to create a container with published ports. If the port isn't working, be sure
-    // your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
-    // "appPort": [3000],
+  // Use 'settings' to set *default* container specific settings.json values on container create.
+  // You can edit these settings after create using File > Preferences > Settings > Remote.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
 
-    // Comment out the next line to run as root instead.
-    // "remoteUser": "node",
+    // Find ./node_modules/eslint, and plugins starting here
+    "eslint.workingDirectories": [ "./app" ]
+  },
 
-    // Docker Support
-    "runArgs": [
-      "--privileged",
-      "-v", "/var/run/docker.sock:/var/run/docker.sock",
-      "--network", "host",
+  // Specifies a command that should be run after the container has been created.
+  "postCreateCommand": "npm i --prefix ./app",
 
-      // Set VSCode as editor for Git
-      "-e", "VISUAL=code --wait"
-    ],
-
-    // Use 'settings' to set *default* container specific settings.json values on container create.
-    // You can edit these settings after create using File > Preferences > Settings > Remote.
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash",
-
-        // Find ./node_modules/eslint, and plugins starting here
-        "eslint.workingDirectories": [ "./app" ]
-    },
-
-    // Specifies a command that should be run after the container has been created.
-    "postCreateCommand": "npm i --prefix ./app",
-
-    // Add the IDs of extensions you want installed when the container is created in the array below.
-    "extensions": [
-        "dbaeumer.vscode-eslint",
-        "editorconfig.editorconfig",
-        "mhutchie.git-graph"
-    ]
+  // Add the IDs of extensions you want installed when the container is created in the array below.
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "mhutchie.git-graph"
+  ]
 }
 EOM
 
