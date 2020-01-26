@@ -8,7 +8,7 @@ This project was created using (vscode-remote-try-node)[https://github.com/Micro
 - Add .editorconfig support
 - Add Docker-in-Docker support
 
-You can find the original documentation from vscode-remote-try-node below...
+You can find the original documentation from vscode-remote-try-node below. But, before you try to use these VSCode-specific features, run the `./initvscode.sh` script to create the necessary config files.
 
 ---
 
