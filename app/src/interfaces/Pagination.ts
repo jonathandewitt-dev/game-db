@@ -1,5 +1,7 @@
+import Identifier from './Identifier'
+
 export default interface Pagination {
   limit: number
-  firstId?: number
-  lastId?: number
+  firstId?: Identifier
+  lastId?: Identifier
 }

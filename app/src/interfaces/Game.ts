@@ -1,4 +1,6 @@
+import Identifier from './Identifier'
+
 export default interface Game {
-  id?: number
+  id?: Identifier
   title: string
 }

@@ -1,5 +1,7 @@
+import Identifier from './Identifier'
+
 export default interface Collector {
-  id?: number
+  id?: Identifier
   displayName: string
   games?: number[]
 }
