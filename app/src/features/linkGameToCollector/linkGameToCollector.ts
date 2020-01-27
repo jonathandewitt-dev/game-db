@@ -1,7 +1,7 @@
-import Collector from './interfaces/Collector'
-import Game from './interfaces/Game'
+import Collector from '../../interfaces/Collector'
+import Game from '../../interfaces/Game'
 
-interface GameForCollectorUI<T> {
+export interface ILinkGameToCollectorUI<T> {
   ({
     collector,
     game,
@@ -11,7 +11,7 @@ interface GameForCollectorUI<T> {
   }): T
 }
 
-interface LinkGameToCollectorDB {
+export interface ILinkGameToCollectorDB {
   (collectorID: number, gameId: number): Promise<{
     collector: Collector
     game: Game
@@ -19,8 +19,8 @@ interface LinkGameToCollectorDB {
 }
 
 export default async <T>(
-  ui: GameForCollectorUI<T>,
-  db: LinkGameToCollectorDB,
+  ui: ILinkGameToCollectorUI<T>,
+  db: ILinkGameToCollectorDB,
   collectorId: number,
   gameId: number,
 ): Promise<T> =>

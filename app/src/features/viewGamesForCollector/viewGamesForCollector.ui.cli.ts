@@ -1,6 +1,6 @@
-import Collector from '../../domain/interfaces/Collector'
-import Game from '../../domain/interfaces/Game'
-import Pagination from '../../domain/interfaces/Pagination'
+import Collector from '../../interfaces/Collector'
+import Game from '../../interfaces/Game'
+import Pagination from '../../interfaces/Pagination'
 
 export default ({
   collector,

@@ -1,6 +1,6 @@
-import createUI from '../../ui/cli'
-import createDB from '../../db/volatile'
-import linkGameToCollector from '../../domain/linkGameToCollector'
+import createUI from '../../cliUI'
+import createDB from '../../volatileDB'
+import linkGameToCollector from './linkGameToCollector'
 
 describe('addGameForCollector', () => {
   it('adds a game for a collector', async () => {

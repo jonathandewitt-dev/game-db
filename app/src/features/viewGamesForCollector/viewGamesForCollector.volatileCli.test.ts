@@ -1,6 +1,6 @@
-import createUI from '../../ui/cli'
-import createDB from '../../db/volatile'
-import viewGamesForCollector from '../../domain/viewGamesForCollector'
+import createUI from '../../cliUI'
+import createDB from '../../volatileDB'
+import viewGamesForCollector from './viewGamesForCollector'
 
 describe('view games associated with a collector', () => {
   it('finds and returns collector by id + a page of associated games', async () => {

@@ -1,6 +1,6 @@
-import createUI from '../../ui/cli'
-import createDB from '../../db/volatile'
-import viewGame from '../../domain/viewGame'
+import createUI from '../../cliUI'
+import createDB from '../../volatileDB'
+import viewGame from './viewGame'
 
 describe('view a game', () => {
   it('should get one pre-existing game by id', async () => {
@@ -10,7 +10,7 @@ describe('view a game', () => {
     const db = await createDB({ games: [testGame] })
 
     expect(
-      await viewGame(ui.viewGame, db.getGame, testGame.id)
+      await viewGame(ui.viewGame, db.viewGame, testGame.id)
     ).toStrictEqual(
       `${testGame.id}\t"${testGame.title}"`
     )

@@ -1,5 +1,5 @@
-import Collector from '../../domain/interfaces/Collector'
-import Game from '../../domain/interfaces/Game'
+import Collector from '../../interfaces/Collector'
+import Game from '../../interfaces/Game'
 
 export default ({
   collector,

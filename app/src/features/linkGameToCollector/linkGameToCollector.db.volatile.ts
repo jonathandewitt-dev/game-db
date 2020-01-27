@@ -1,6 +1,6 @@
-import DBData from '../interfaces/DBData'
-import Collector from '../../domain/interfaces/Collector'
-import Game from '../../domain/interfaces/Game'
+import DBData from '../../interfaces/DBData'
+import Collector from '../../interfaces/Collector'
+import Game from '../../interfaces/Game'
 
 export default async (
   data: DBData,

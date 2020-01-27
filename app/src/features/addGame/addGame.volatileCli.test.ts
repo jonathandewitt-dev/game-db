@@ -1,6 +1,6 @@
-import createUI from '../../ui/cli'
-import createDB from '../../db/volatile'
-import addGame from '../../domain/addGame'
+import createUI from '../../cliUI'
+import createDB from '../../volatileDB'
+import addGame from './addGame'
 
 describe('add a game', () => {
   it('should return the added game + newly-assigned id', async () => {

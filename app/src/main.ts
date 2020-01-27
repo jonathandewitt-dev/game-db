@@ -1,9 +1,9 @@
-import createUI from './ui/cli'
-import createDB from './db/volatile'
-import addGame from './domain/addGame'
-import viewGame from './domain/viewGame'
-import viewGamesForCollector from './domain/viewGamesForCollector'
-import linkGameToCollector from './domain/linkGameToCollector'
+import createUI from './cliUI'
+import createDB from './volatileDB'
+import addGame from './features/addGame/addGame'
+import viewGame from './features/viewGame/viewGame'
+import viewGamesForCollector from './features/viewGamesForCollector/viewGamesForCollector'
+import linkGameToCollector from './features/linkGameToCollector/linkGameToCollector'
 import inquirer from 'inquirer'
 
 export default async ({ env, args }: { env: string, args: string[] }): Promise<void> => {
@@ -31,7 +31,7 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
         type: 'number',
         default: 0,
       }])
-      return viewGame(ui.viewGame, db.getGame, id)
+      return viewGame(ui.viewGame, db.viewGame, id)
     },
 
     addGame: async () => {
