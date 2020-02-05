@@ -1,5 +1,5 @@
-import createUI from '../../cliUI'
-import createDB from '../../volatileDB'
+import createUI from '../../ui/cli'
+import createDB from '../../db/volatile'
 import viewGame from './viewGame'
 
 describe('view a game', () => {

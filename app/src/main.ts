@@ -1,5 +1,5 @@
-import createUI from './cliUI'
-import createDB from './volatileDB'
+import createUI from './ui/cli'
+import createDB from './db/volatile'
 import addGame from './features/addGame/addGame'
 import viewGame from './features/viewGame/viewGame'
 import viewGamesForCollector from './features/viewGamesForCollector/viewGamesForCollector'

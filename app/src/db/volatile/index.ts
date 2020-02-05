@@ -1,8 +1,8 @@
-import DBData from './interfaces/DBData'
-import addGame from './features/addGame/addGame.db.volatile'
-import viewGame from './features/viewGame/viewGame.db.volatile'
-import getGamesForCollector from './features/viewGamesForCollector/viewGamesForCollector.db.volatile'
-import linkGameToCollector from './features/linkGameToCollector/linkGameToCollector.db.volatile'
+import DBData from '../../interfaces/DBData'
+import addGame from '../../features/addGame/addGame.db.volatile'
+import viewGame from '../../features/viewGame/viewGame.db.volatile'
+import getGamesForCollector from '../../features/viewGamesForCollector/viewGamesForCollector.db.volatile'
+import linkGameToCollector from '../../features/linkGameToCollector/linkGameToCollector.db.volatile'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default async (seedData: DBData = {}) => {
