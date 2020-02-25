@@ -1,5 +1,6 @@
 import DBData from '../../interfaces/DBData'
 import addGame from '../../features/addGame/addGame.db.volatile'
+import removeGame from '../../features/removeGame/removeGame.db.volatile'
 import viewGame from '../../features/viewGame/viewGame.db.volatile'
 import getGamesForCollector from '../../features/viewGamesForCollector/viewGamesForCollector.db.volatile'
 import linkGameToCollector from '../../features/linkGameToCollector/linkGameToCollector.db.volatile'
@@ -16,6 +17,7 @@ export default async (seedData: DBData = {}) => {
     getGamesForCollector: getGamesForCollector.bind(this, dbData),
     linkGameToCollector: linkGameToCollector.bind(this, dbData),
     addGame: addGame.bind(this, dbData),
+    removeGame: removeGame.bind(this, dbData),
     viewGame: viewGame.bind(this, dbData),
   })
 }

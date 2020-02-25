@@ -1,6 +1,7 @@
 import createUI from './ui/cli'
 import createDB from './db/volatile'
 import addGame from './features/addGame/addGame'
+import removeGame from './features/removeGame/removeGame'
 import viewGame from './features/viewGame/viewGame'
 import viewGamesForCollector from './features/viewGamesForCollector/viewGamesForCollector'
 import linkGameToCollector from './features/linkGameToCollector/linkGameToCollector'
@@ -32,6 +33,16 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
         default: 0,
       }])
       return viewGame(ui.viewGame, db.viewGame, id)
+    },
+
+    removeGame: async () => {
+      const { id } = await inquirer.prompt([{
+        name: 'id',
+        message: 'Enter game id:',
+        type: 'number',
+        default: 0,
+      }])
+      return removeGame(ui.removeGame, db.removeGame, id)
     },
 
     addGame: async () => {
