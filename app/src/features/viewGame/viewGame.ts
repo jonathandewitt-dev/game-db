@@ -1,3 +1,4 @@
+import Identifier from '../../interfaces/Identifier'
 import Game from '../../interfaces/Game'
 
 export interface IViewGameUI<T> {
@@ -5,8 +6,8 @@ export interface IViewGameUI<T> {
 }
 
 export interface IViewGameDB {
-  (id: number): Promise<Game>
+  (gameId: Identifier): Promise<Game>
 }
 
-export default async <T>(ui: IViewGameUI<T>, db: IViewGameDB, id: number): Promise<T> =>
-  ui(await db(id))
+export default async <T>(ui: IViewGameUI<T>, db: IViewGameDB, gameId: Identifier): Promise<T> =>
+  ui(await db(gameId))
