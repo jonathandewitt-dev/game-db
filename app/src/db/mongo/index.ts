@@ -1,6 +1,11 @@
 import { createConnection } from 'mongoose'
 import DBData from '../../interfaces/DBData'
-import createModels from './models'
+
+// Model factory functions
+import createGame from './models/Game'
+import createCollector from './models/Collector'
+
+// Features
 import addGame from '../../features/addGame/addGame.db.mongo'
 import removeGame from '../../features/removeGame/removeGame.db.mongo'
 /*
@@ -9,7 +14,9 @@ import getGamesForCollector from '../../features/viewGamesForCollector/viewGames
 import linkGameToCollector from '../../features/linkGameToCollector/linkGameToCollector.db.mongo'
 */
 
-export { GameModel, CollectorModel } from './models'
+// Types
+export { GameModel } from './models/Game'
+export { CollectorModel } from './models/Collector'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default async (seedData: DBData = {}) => {
@@ -19,7 +26,10 @@ export default async (seedData: DBData = {}) => {
   })
 
   // eslint-disable-next-line
-  const models = createModels(connection)
+  const models = {
+    Game: createGame(connection),
+    Collector: createCollector(connection),
+  }
 
   // NOTE: Cannot DRY this up because the TypeScript compiler loses track of types
   return Promise.resolve({
