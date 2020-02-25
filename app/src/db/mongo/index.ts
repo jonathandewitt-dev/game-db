@@ -8,8 +8,8 @@ import createCollector from './models/Collector'
 // Features
 import addGame from '../../features/addGame/addGame.db.mongo'
 import removeGame from '../../features/removeGame/removeGame.db.mongo'
-/*
 import viewGame from '../../features/viewGame/viewGame.db.mongo'
+/*
 import getGamesForCollector from '../../features/viewGamesForCollector/viewGamesForCollector.db.mongo'
 import linkGameToCollector from '../../features/linkGameToCollector/linkGameToCollector.db.mongo'
 */
@@ -35,10 +35,10 @@ export default async (seedData: DBData = {}) => {
   return Promise.resolve({
     addGame: addGame.bind(this, models),
     removeGame: removeGame.bind(this, models),
+    viewGame: viewGame.bind(this, models),
     /*
     getGamesForCollector: getGamesForCollector.bind(this, models),
     linkGameToCollector: linkGameToCollector.bind(this, models),
-    viewGame: viewGame.bind(this, models),
     */
     close: async () => connection.close(),
   })
