@@ -1,48 +1,36 @@
 import createUI from './ui/cli'
-import createDB from './db/volatile'
-import addGame from './features/addGame/addGame'
-import removeGame from './features/removeGame/removeGame'
-import viewGame from './features/viewGame/viewGame'
-import viewGamesForCollector from './features/viewGamesForCollector/viewGamesForCollector'
-import linkGameToCollector from './features/linkGameToCollector/linkGameToCollector'
+import createDB from './db/mongo'
+import viewGames from './features/game/viewGames/viewGames'
+import viewGame from './features/game/viewGame/viewGame'
+import addGame from './features/game/addGame/addGame'
+import removeGame from './features/game/removeGame/removeGame'
+import viewGamesForCollector from './features/game/viewGamesForCollector/viewGamesForCollector'
+import linkGameToCollector from './features/game/linkGameToCollector/linkGameToCollector'
+import viewCollectors from './features/collector/viewCollectors/viewCollectors'
+import addCollector from './features/collector/addCollector/addCollector'
+import removeCollector from './features/collector/removeCollector/removeCollector'
+
 import inquirer from 'inquirer'
 
 export default async ({ env, args }: { env: string, args: string[] }): Promise<void> => {
   const ui = await createUI()
-
-  const db = await createDB({
-    collectors: [
-      { id: 1, displayName: 'Game Collector 001', games: [1, 3, 4, 6] },
-    ],
-    games: [
-      { id: 1, title: 'Blaster Master' },
-      { id: 2, title: 'Super Mario Bros. 2' },
-      { id: 3, title: 'Kirby\'s Adventure' },
-      { id: 4, title: 'Ninja Gaiden' },
-      { id: 5, title: 'Shatterhand' },
-      { id: 6, title: 'Teenage Mutant Ninja Turtles' },
-    ],
-  })
+  const db = await createDB()
 
   const commandHandlers: any = {
+    viewGames: async () => {
+      const { limit, firstId } = await inquirer.prompt([
+        { name: 'limit', message: 'Enter limit:', type: 'number', default: 25 },
+        { name: 'firstId', message: 'Enter firstId:' },
+      ])
+      return viewGames(ui.viewGames, db.viewGames, { limit, firstId })
+    },
+
     viewGame: async () => {
       const { id } = await inquirer.prompt([{
         name: 'id',
         message: 'Enter game id:',
-        type: 'number',
-        default: 0,
       }])
       return viewGame(ui.viewGame, db.viewGame, id)
-    },
-
-    removeGame: async () => {
-      const { id } = await inquirer.prompt([{
-        name: 'id',
-        message: 'Enter game id:',
-        type: 'number',
-        default: 0,
-      }])
-      return removeGame(ui.removeGame, db.removeGame, id)
     },
 
     addGame: async () => {
@@ -53,13 +41,21 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
       return addGame(ui.addGame, db.addGame, { title })
     },
 
+    removeGame: async () => {
+      const { id } = await inquirer.prompt([{
+        name: 'id',
+        message: 'Enter game id:',
+      }])
+      return removeGame(ui.removeGame, db.removeGame, id)
+    },
+
     viewGamesForCollector: async () => {
       const { collectorId, limit, firstId } = await inquirer.prompt([
-        { name: 'collectorId', message: 'Enter collectorId:', type: 'number' },
+        { name: 'collectorId', message: 'Enter collectorId:' },
         { name: 'limit', message: 'Enter limit:', type: 'number', default: 25 },
-        { name: 'firstId', message: 'Enter firstId:', type: 'number', default: 0 },
+        { name: 'firstId', message: 'Enter firstId:' },
       ])
-      return viewGamesForCollector(ui.viewGamesForCollector, db.getGamesForCollector, collectorId, {
+      return viewGamesForCollector(ui.viewGamesForCollector, db.viewGamesForCollector, collectorId, {
         limit,
         firstId,
       })
@@ -67,10 +63,34 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
 
     linkGameToCollector: async () => {
       const { collectorId, gameId } = await inquirer.prompt([
-        { name: 'collectorId', message: 'Enter collectorId:', type: 'number' },
-        { name: 'gameId', message: 'Enter gameId:', type: 'number' },
+        { name: 'collectorId', message: 'Enter collectorId:' },
+        { name: 'gameId', message: 'Enter gameId:' },
       ])
       return linkGameToCollector(ui.linkGameToCollector, db.linkGameToCollector, collectorId, gameId)
+    },
+
+    viewCollectors: async () => {
+      const { limit, firstId } = await inquirer.prompt([
+        { name: 'limit', message: 'Enter limit:', type: 'number', default: 25 },
+        { name: 'firstId', message: 'Enter firstId:' },
+      ])
+      return viewCollectors(ui.viewCollectors, db.viewCollectors, { limit, firstId })
+    },
+
+    addCollector: async () => {
+      const { displayName } = await inquirer.prompt([{
+        name: 'displayName',
+        message: 'Enter collector displayName:',
+      }])
+      return addCollector(ui.addCollector, db.addCollector, { displayName })
+    },
+
+    removeCollector: async () => {
+      const { id } = await inquirer.prompt([{
+        name: 'id',
+        message: 'Enter collector id:',
+      }])
+      return removeCollector(ui.removeCollector, db.removeCollector, id)
     },
   }
   // @ts-ignore

@@ -5,14 +5,18 @@ import DBData from '../../interfaces/DBData'
 import createGame from './models/Game'
 import createCollector from './models/Collector'
 
-// Features
-import addGame from '../../features/addGame/addGame.db.mongo'
-import removeGame from '../../features/removeGame/removeGame.db.mongo'
-import viewGame from '../../features/viewGame/viewGame.db.mongo'
-/*
-import getGamesForCollector from '../../features/viewGamesForCollector/viewGamesForCollector.db.mongo'
-import linkGameToCollector from '../../features/linkGameToCollector/linkGameToCollector.db.mongo'
-*/
+// Game Features
+import viewGames from '../../features/game/viewGames/viewGames.db.mongo'
+import viewGame from '../../features/game/viewGame/viewGame.db.mongo'
+import addGame from '../../features/game/addGame/addGame.db.mongo'
+import removeGame from '../../features/game/removeGame/removeGame.db.mongo'
+import viewGamesForCollector from '../../features/game/viewGamesForCollector/viewGamesForCollector.db.mongo'
+import linkGameToCollector from '../../features/game/linkGameToCollector/linkGameToCollector.db.mongo'
+
+// Collector Features
+import viewCollectors from '../../features/collector/viewCollectors/viewCollectors.db.mongo'
+import addCollector from '../../features/collector/addCollector/addCollector.db.mongo'
+import removeCollector from '../../features/collector/removeCollector/removeCollector.db.mongo'
 
 // Types
 export { GameModel } from './models/Game'
@@ -33,13 +37,19 @@ export default async (seedData: DBData = {}) => {
 
   // NOTE: Cannot DRY this up because the TypeScript compiler loses track of types
   return Promise.resolve({
+    // Game
+    viewGames: viewGames.bind(this, models),
+    viewGame: viewGame.bind(this, models),
     addGame: addGame.bind(this, models),
     removeGame: removeGame.bind(this, models),
-    viewGame: viewGame.bind(this, models),
-    /*
-    getGamesForCollector: getGamesForCollector.bind(this, models),
+    viewGamesForCollector: viewGamesForCollector.bind(this, models),
     linkGameToCollector: linkGameToCollector.bind(this, models),
-    */
+
+    // Collector
+    addCollector: addCollector.bind(this, models),
+    removeCollector: removeCollector.bind(this, models),
+    viewCollectors: viewCollectors.bind(this, models),
+
     close: async () => connection.close(),
   })
 }
