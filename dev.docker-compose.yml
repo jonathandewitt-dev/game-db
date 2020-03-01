@@ -12,6 +12,7 @@ services:
     environment:
       - VISUAL=code --wait
     volumes:
+      - notused:/game-db/app/node_modules
       - .:/game-db:cached
       - /var/run/docker.sock:/var/run/docker.sock
     command: sleep infinity
@@ -23,3 +24,6 @@ services:
     restart: unless-stopped
     volumes:
       - /data/db
+
+volumes:
+  notused:
