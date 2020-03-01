@@ -4,27 +4,26 @@ import addGame from './addGame'
 import Game from '../../../interfaces/Game'
 
 describe('add a game', () => {
-  it('should return the added game + newly-assigned id', async () => {
+  it('should return the added game + newly-assigned id and date', async () => {
     expect.assertions(2)
     const ui = await createUI()
     const db = await createDB()
 
-    const gameInput = { title: 'Blaster Master' }
+    const gameInput: Game = { title: 'Blaster Master' }
 
-    // Capture the newly-assigned id
-    let gameId
+    // Capture the newly-assigned id and date
+    let game: Game
     const dbAddGame = async (gameInput: Game): Promise<Game> => {
-      const game = await db.addGame(gameInput)
-      gameId = game.id
+      game = await db.addGame(gameInput)
       return game
     }
 
     const result = await addGame(ui.addGame, dbAddGame, gameInput)
 
-    expect(gameId).toBeDefined()
-    expect(result).toStrictEqual(`${gameId}\t"${gameInput.title}"`)
+    expect(game.id).toBeDefined()
+    expect(result).toStrictEqual(`${game.id}\t"${gameInput.title}"\tCreated: ${game.createdDate}`)
 
-    await db.removeGame(gameId)
+    await db.removeGame(game.id)
     await db.close()
   })
 })

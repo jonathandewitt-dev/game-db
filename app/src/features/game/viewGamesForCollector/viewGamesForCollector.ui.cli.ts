@@ -12,11 +12,11 @@ export default ({
   pagination: Pagination
 }): string => {
   const lines = [
-    `Collector: ${collector.displayName} (${collector.id})`,
+    `Collector: ${collector.displayName} (${collector.id})\tCreated: ${collector.createdDate}`,
     '',
     'id\ttitle'
   ].concat(
-    games.map(({ id, title }) => `${id}\t"${title}"`)
+    games.map(({ id, title, createdDate }) => `${id}\t"${title}"\tCreated: ${createdDate}`)
   ).concat([
     '',
     `Page limit: ${pagination.limit}`

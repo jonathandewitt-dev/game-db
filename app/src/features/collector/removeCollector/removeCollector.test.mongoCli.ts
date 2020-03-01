@@ -11,7 +11,7 @@ describe('remove a collector', () => {
     const collector = await db.addCollector({ displayName: 'John Doe' })
     const result = await removeCollector(ui.removeCollector, db.removeCollector, collector.id)
 
-    expect(result).toStrictEqual(`-${collector.id}\t"${collector.displayName}"`)
+    expect(result).toStrictEqual(`-${collector.id}\t"${collector.displayName}"\tCreated: ${collector.createdDate}`)
 
     await db.close()
   })

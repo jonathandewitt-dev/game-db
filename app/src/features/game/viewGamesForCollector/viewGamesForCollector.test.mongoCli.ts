@@ -21,9 +21,9 @@ describe('view games associated with a collector', () => {
     })
 
     expect(result).toStrictEqual(
-      `Collector: ${collector.displayName} (${collector.id})\n\n` +
+      `Collector: ${collector.displayName} (${collector.id})\tCreated: ${collector.createdDate}\n\n` +
       'id\ttitle\n' +
-      `${game2.id}\t"${game2.title}"\n\n` +
+      `${game2.id}\t"${game2.title}"\tCreated: ${game2.createdDate}\n\n` +
       'Page limit: 1'
     )
 

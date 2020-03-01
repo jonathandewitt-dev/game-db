@@ -8,5 +8,9 @@ export default ({
   collectors: Collector[]
   pagination: Pagination
 }): string =>
-  collectors.map(c => `${c.id}\t"${c.displayName}"`)
+  collectors.map(c => `${c.id}\t"${c.displayName}"\tCreated: ${c.createdDate}`)
+    .concat([
+      '',
+      `Page limit: ${pagination.limit}`,
+    ])
     .join('\n')

@@ -12,7 +12,7 @@ describe('view a game', () => {
 
     const result = await viewGame(ui.viewGame, db.viewGame, game.id)
 
-    expect(result).toStrictEqual(`${game.id}\t"${game.title}"`)
+    expect(result).toStrictEqual(`${game.id}\t"${game.title}"\tCreated: ${game.createdDate}`)
 
     await db.removeGame(game.id)
     await db.close()

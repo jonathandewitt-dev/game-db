@@ -8,5 +8,9 @@ export default ({
   games: Game[]
   pagination: Pagination
 }): string =>
-  games.map(c => `${c.id}\t"${c.title}"`)
+  games.map(g => `${g.id}\t"${g.title}"\tCreated: ${g.createdDate}`)
+    .concat([
+      '',
+      `Page limit: ${pagination.limit}`
+    ])
     .join('\n')

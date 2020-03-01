@@ -4,27 +4,26 @@ import addCollector from './addCollector'
 import Collector from '../../../interfaces/Collector'
 
 describe('add a collector', () => {
-  it('should return the added collector + newly-assigned id', async () => {
+  it('should return the added collector + newly-assigned id and date', async () => {
     expect.assertions(2)
     const ui = await createUI()
     const db = await createDB()
 
-    const collectorInput = { displayName: 'John Doe' }
+    const collectorInput: Collector = { displayName: 'John Doe' }
 
-    // Capture the newly-assigned id
-    let collectorId
+    // Capture the newly-assigned id and date
+    let collector: Collector
     const dbAddCollector = async (collectorInput: Collector): Promise<Collector> => {
-      const collector = await db.addCollector(collectorInput)
-      collectorId = collector.id
+      collector = await db.addCollector(collectorInput)
       return collector
     }
 
     const result = await addCollector(ui.addCollector, dbAddCollector, collectorInput)
 
-    expect(collectorId).toBeDefined()
-    expect(result).toStrictEqual(`${collectorId}\t"${collectorInput.displayName}"`)
+    expect(collector.id).toBeDefined()
+    expect(result).toStrictEqual(`${collector.id}\t"${collectorInput.displayName}"\tCreated: ${collector.createdDate}`)
 
-    await db.removeCollector(collectorId)
+    await db.removeCollector(collector.id)
     await db.close()
   })
 })

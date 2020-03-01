@@ -18,10 +18,10 @@ describe('addGameForCollector', () => {
       testGame.id,
     )
     expect(result).toStrictEqual(
-`Collector: ${testCollector.displayName} (${testCollector.id})
+`Collector: ${testCollector.displayName} (${testCollector.id})\tCreated: ${testCollector.createdDate}
 
 id\ttitle
-${testGame.id}\t"${testGame.title}"`
+${testGame.id}\t"${testGame.title}"\tCreated: ${testGame.createdDate}`
     )
 
     await db.removeGame(testGame.id)
