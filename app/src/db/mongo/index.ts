@@ -2,8 +2,8 @@ import { createConnection } from 'mongoose'
 import DBData from '../../interfaces/DBData'
 
 // Model factory functions
-import createGame from './models/Game'
-import createCollector from './models/Collector'
+import createGameModel from './models/Game'
+import createCollectorModel from './models/Collector'
 
 // Game Features
 import viewGames from '../../features/game/viewGames/viewGames.db.mongo'
@@ -31,8 +31,8 @@ export default async (seedData: DBData = {}) => {
 
   // eslint-disable-next-line
   const models = {
-    Game: createGame(connection),
-    Collector: createCollector(connection),
+    Game: createGameModel(connection),
+    Collector: createCollectorModel(connection),
   }
 
   // NOTE: Cannot DRY this up because the TypeScript compiler loses track of types
