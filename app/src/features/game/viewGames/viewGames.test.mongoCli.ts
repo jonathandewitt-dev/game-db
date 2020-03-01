@@ -15,11 +15,13 @@ describe('view a paginated list of games', () => {
 
     const result = await viewGames(ui.viewGames, db.viewGames, {
       limit: 1,
+      lastCreatedDate: new Date(),
     })
 
+    const lastGame = games[games.length - 1]
     expect(result).toStrictEqual(
       expect.stringContaining(
-        games.map(c => `${c.id}\t"${c.title}"`).join('\n')
+        [lastGame].map(c => `${c.id}\t"${c.title}"`).join('\n')
       )
     )
 

@@ -15,11 +15,13 @@ describe('view a paginated list of collectors', () => {
 
     const result = await viewCollectors(ui.viewCollectors, db.viewCollectors, {
       limit: 1,
+      lastCreatedDate: new Date(),
     })
 
+    const lastCollector = collectors[collectors.length - 1]
     expect(result).toStrictEqual(
       expect.stringContaining(
-        collectors.map(c => `${c.id}\t"${c.displayName}"`).join('\n')
+        [lastCollector].map(c => `${c.id}\t"${c.displayName}"`).join('\n')
       )
     )
 

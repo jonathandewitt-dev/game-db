@@ -1,5 +1,6 @@
-import { createConnection } from 'mongoose'
+import { createConnection, Model, Document, DocumentQuery } from 'mongoose'
 import DBData from '../../interfaces/DBData'
+import Pagination from '../../interfaces/Pagination'
 
 // Model factory functions
 import createGameModel from './models/Game'
@@ -21,6 +22,35 @@ import removeCollector from '../../features/collector/removeCollector/removeColl
 // Types
 export { GameModel } from './models/Game'
 export { CollectorModel } from './models/Collector'
+
+// DB Shared Utils
+export const paginateQuery = <T extends Document>(
+  model: Model<T, {}>,
+  pagination: Pagination,
+  findConfig: any = {}
+): DocumentQuery<Array<T & Document>, T & Document, {}> => {
+
+  if (pagination.firstCreatedDate !== undefined || pagination.lastCreatedDate !== undefined) {
+    findConfig.createdDate = {}
+  }
+
+  if (pagination.firstCreatedDate !== undefined) {
+    Object.assign(findConfig.createdDate, {
+      $gte: pagination.firstCreatedDate
+    })
+  }
+
+  if (pagination.lastCreatedDate !== undefined) {
+    Object.assign(findConfig.createdDate, {
+      $lte: pagination.lastCreatedDate
+    })
+  }
+
+  return model
+    .find(findConfig)
+    .limit(pagination.limit)
+    .sort('-createdDate')
+}
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default async (seedData: DBData = {}) => {

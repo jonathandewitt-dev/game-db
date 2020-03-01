@@ -1,4 +1,4 @@
-import { CollectorModel, GameModel } from '../../../db/mongo'
+import { CollectorModel, GameModel, paginateQuery } from '../../../db/mongo'
 import Identifier from '../../../interfaces/Identifier'
 import Collector from '../../../interfaces/Collector'
 import Game from '../../../interfaces/Game'
@@ -18,10 +18,9 @@ export default async (
 }> => {
   const collector = await models.Collector.findById(collectorId)
 
-  // TODO: Update to use pagination
-  const games = await models.Game
-    .find({ _id: { $in: collector.games } })
-    .exec()
+  const games = await paginateQuery(models.Game, pagination, {
+    _id: { $in: collector.games }
+  }).exec()
 
   return { collector, games, pagination }
 }

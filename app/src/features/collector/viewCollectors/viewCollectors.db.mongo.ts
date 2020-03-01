@@ -1,4 +1,4 @@
-import { CollectorModel } from '../../../db/mongo'
+import { CollectorModel, paginateQuery } from '../../../db/mongo'
 import Pagination from '../../../interfaces/Pagination'
 import Collector from '../../../interfaces/Collector'
 
@@ -9,7 +9,6 @@ export default async (
   collectors: Collector[]
   pagination: Pagination
 }> => {
-  // TODO: Update to use pagination
-  const collectors = await models.Collector.find({}).exec()
+  const collectors = await paginateQuery(models.Collector, pagination).exec()
   return { collectors, pagination }
 }

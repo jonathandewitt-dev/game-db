@@ -1,4 +1,4 @@
-import { GameModel } from '../../../db/mongo'
+import { GameModel, paginateQuery } from '../../../db/mongo'
 import Pagination from '../../../interfaces/Pagination'
 import Game from '../../../interfaces/Game'
 
@@ -9,7 +9,6 @@ export default async (
   games: Game[]
   pagination: Pagination
 }> => {
-  // TODO: Update to use pagination
-  const games = await models.Game.find({}).exec()
+  const games = await paginateQuery(models.Game, pagination).exec()
   return { games, pagination }
 }

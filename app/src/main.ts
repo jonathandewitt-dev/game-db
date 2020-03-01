@@ -22,16 +22,16 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
 
   const commandHandlers: any = {
     viewGames: async () => {
-      const { limit, firstCreatedDate } = await inquirer.prompt([
+      const { limit, lastCreatedDate } = await inquirer.prompt([
         { name: 'limit', message: 'Enter limit:', type: 'number', default: 25 },
         {
-          name: 'firstCreatedDate',
-          message: 'Enter first created date:',
+          name: 'lastCreatedDate',
+          message: 'Created before:',
           type: 'datetime',
           format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT']
         },
       ])
-      return viewGames(ui.viewGames, db.viewGames, { limit, firstCreatedDate })
+      return viewGames(ui.viewGames, db.viewGames, { limit, lastCreatedDate })
     },
 
     viewGame: async () => {
@@ -59,19 +59,19 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
     },
 
     viewGamesForCollector: async () => {
-      const { collectorId, limit, firstCreatedDate } = await inquirer.prompt([
+      const { collectorId, limit, lastCreatedDate } = await inquirer.prompt([
         { name: 'collectorId', message: 'Enter collectorId:' },
         { name: 'limit', message: 'Enter limit:', type: 'number', default: 25 },
         {
-          name: 'firstCreatedDate',
-          message: 'Enter first created date:',
+          name: 'lastCreatedDate',
+          message: 'Created before:',
           type: 'datetime',
           format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT']
         },
       ])
       return viewGamesForCollector(ui.viewGamesForCollector, db.viewGamesForCollector, collectorId, {
         limit,
-        firstCreatedDate,
+        lastCreatedDate,
       })
     },
 
@@ -84,16 +84,16 @@ export default async ({ env, args }: { env: string, args: string[] }): Promise<v
     },
 
     viewCollectors: async () => {
-      const { limit, firstCreatedDate } = await inquirer.prompt([
+      const { limit, lastCreatedDate } = await inquirer.prompt([
         { name: 'limit', message: 'Enter limit:', type: 'number', default: 25 },
         {
-          name: 'firstCreatedDate',
-          message: 'Enter first created date:',
+          name: 'lastCreatedDate',
+          message: 'Created before:',
           type: 'datetime',
           format: ['mm', '/', 'dd', '/', 'yyyy', ' ', 'hh', ':', 'MM', ' ', 'TT']
         },
       ])
-      return viewCollectors(ui.viewCollectors, db.viewCollectors, { limit, firstCreatedDate })
+      return viewCollectors(ui.viewCollectors, db.viewCollectors, { limit, lastCreatedDate })
     },
 
     addCollector: async () => {

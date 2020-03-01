@@ -17,14 +17,12 @@ describe('view games associated with a collector', () => {
 
     const result = await viewGamesForCollector(ui.viewGamesForCollector, db.viewGamesForCollector, collector.id, {
       limit: 1,
-      firstCreatedDate: collector.createdDate,
+      lastCreatedDate: new Date(),
     })
 
-    // TODO: Update to use pagination (remove game2)
     expect(result).toStrictEqual(
       `Collector: ${collector.displayName} (${collector.id})\n\n` +
       'id\ttitle\n' +
-      `${game1.id}\t"${game1.title}"\n` +
       `${game2.id}\t"${game2.title}"\n\n` +
       'Page limit: 1'
     )
