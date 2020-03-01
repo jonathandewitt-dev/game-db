@@ -1,15 +1,15 @@
 // Game Features
-import viewGames from '../../features/game/viewGames/viewGames.ui.cli'
-import viewGame from '../../features/game/viewGame/viewGame.ui.cli'
-import addGame from '../../features/game/addGame/addGame.ui.cli'
-import removeGame from '../../features/game/removeGame/removeGame.ui.cli'
-import viewGamesForCollector from '../../features/game/viewGamesForCollector/viewGamesForCollector.ui.cli'
-import linkGameToCollector from '../../features/game/linkGameToCollector/linkGameToCollector.ui.cli'
+import viewGames from '../../features/game/viewGames/viewGames.ui'
+import viewGame from '../../features/game/viewGame/viewGame.ui'
+import addGame from '../../features/game/addGame/addGame.ui'
+import removeGame from '../../features/game/removeGame/removeGame.ui'
+import viewGamesForCollector from '../../features/game/viewGamesForCollector/viewGamesForCollector.ui'
+import linkGameToCollector from '../../features/game/linkGameToCollector/linkGameToCollector.ui'
 
 // Collector Features
-import addCollector from '../../features/collector/addCollector/addCollector.ui.cli'
-import removeCollector from '../../features/collector/removeCollector/removeCollector.ui.cli'
-import viewCollectors from '../../features/collector/viewCollectors/viewCollectors.ui.cli'
+import addCollector from '../../features/collector/addCollector/addCollector.ui'
+import removeCollector from '../../features/collector/removeCollector/removeCollector.ui'
+import viewCollectors from '../../features/collector/viewCollectors/viewCollectors.ui'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default async () => Promise.resolve({
