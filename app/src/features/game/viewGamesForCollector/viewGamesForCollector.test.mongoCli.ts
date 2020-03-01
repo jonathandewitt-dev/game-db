@@ -17,8 +17,7 @@ describe('view games associated with a collector', () => {
 
     const result = await viewGamesForCollector(ui.viewGamesForCollector, db.viewGamesForCollector, collector.id, {
       limit: 1,
-      firstId: collector.id,
-      lastId: collector.id,
+      firstCreatedDate: collector.createdDate,
     })
 
     // TODO: Update to use pagination (remove game2)

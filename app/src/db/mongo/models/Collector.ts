@@ -7,4 +7,5 @@ export default (connection: Connection): CollectorModel =>
   connection.model<Collector & Document>('Collector', new Schema({
     displayName: { type: String, required: true },
     games: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
+    createdDate: { type: Date, required: true, default: Date.now },
   }))

@@ -4,4 +4,5 @@ export default interface Collector {
   id?: Identifier
   displayName: string
   games?: Identifier[]
+  createdDate?: Date
 }
