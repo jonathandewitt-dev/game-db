@@ -23,5 +23,8 @@ describe('addGameForCollector', () => {
 id\ttitle
 ${testGame.id}\t"${testGame.title}"`
     )
+
+    await db.removeGame(testGame.id)
+    await db.removeCollector(testCollector.id)
   })
 })
