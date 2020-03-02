@@ -1,21 +1,11 @@
-import { CollectorModel, GameModel, paginateQuery } from '../../../db/mongo'
-import Identifier from '../../../interfaces/Identifier'
-import Collector from '../../../interfaces/Collector'
-import Game from '../../../interfaces/Game'
-import Pagination from '../../../interfaces/Pagination'
+import { IDBFunction, paginateQuery } from '../../../db/mongo'
+import { IViewGamesForCollectorDB } from './viewGamesForCollector'
 
-export default async (
-  models: {
-    Collector: CollectorModel
-    Game: GameModel
-  },
-  collectorId: Identifier,
-  pagination: Pagination
-): Promise<{
-  collector: Collector
-  games: Game[]
-  pagination: Pagination
-}> => {
+const viewGamesForCollector: IDBFunction<IViewGamesForCollectorDB> = async (
+  models,
+  collectorId,
+  pagination
+) => {
   const collector = await models.Collector.findById(collectorId)
 
   const games = await paginateQuery(models.Game, pagination, {
@@ -24,3 +14,5 @@ export default async (
 
   return { collector, games, pagination }
 }
+
+export default viewGamesForCollector

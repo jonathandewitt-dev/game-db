@@ -1,17 +1,16 @@
-import Collector from '../../../interfaces/Collector'
-import Game from '../../../interfaces/Game'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { ILinkGameToCollectorUI } from './linkGameToCollector'
 
-export default ({
-  collector,
-  game,
-}: {
-  collector: Collector
-  game: Game
-}): string => {
+const linkGameToCollector: IUIFunction<ILinkGameToCollectorUI<IUIReturnType>> = ({
+  collector: c,
+  game: g,
+}) => {
   const lines = [
-    `Collector: ${collector.displayName} (${collector.id})\tCreated: ${collector.createdDate}`,
+    `Collector: ${c.displayName} (${c.id})\tCreated: ${c.createdDate}`,
     '',
     'id\ttitle'
-  ].concat(`${game.id}\t"${game.title}"\tCreated: ${game.createdDate}`)
+  ].concat(`${g.id}\t"${g.title}"\tCreated: ${g.createdDate}`)
   return lines.join('\n')
 }
+
+export default linkGameToCollector

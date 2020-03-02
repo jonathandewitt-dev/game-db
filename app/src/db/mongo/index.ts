@@ -2,9 +2,9 @@ import { createConnection, Model, Document, DocumentQuery } from 'mongoose'
 import DBData from '../../interfaces/DBData'
 import Pagination from '../../interfaces/Pagination'
 
-// Model factory functions
-import createGameModel from './models/Game'
-import createCollectorModel from './models/Collector'
+// Model factory functions and the types
+import createGameModel, { GameModel } from './models/Game'
+import createCollectorModel, { CollectorModel } from './models/Collector'
 
 // Game Features
 import viewGames from '../../features/game/viewGames/viewGames.db'
@@ -20,8 +20,17 @@ import addCollector from '../../features/collector/addCollector/addCollector.db'
 import removeCollector from '../../features/collector/removeCollector/removeCollector.db'
 
 // Types
-export { GameModel } from './models/Game'
-export { CollectorModel } from './models/Collector'
+interface IDBModels {
+  Game: GameModel
+  Collector: CollectorModel
+}
+
+export interface IDBFunction<T extends (...args: any) => any> {
+  (
+    models: IDBModels,
+    ...funcArgs: Parameters<T>
+  ): ReturnType<T>
+}
 
 // DB Shared Utils
 export const paginateQuery = <T extends Document>(
@@ -58,8 +67,7 @@ export default async (seedData: DBData = {}) => {
     useUnifiedTopology: true,
   })
 
-  // eslint-disable-next-line
-  const models = {
+  const models: IDBModels = {
     Game: createGameModel(connection),
     Collector: createCollectorModel(connection),
   }

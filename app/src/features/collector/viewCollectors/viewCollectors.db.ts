@@ -1,14 +1,9 @@
-import { CollectorModel, paginateQuery } from '../../../db/mongo'
-import Pagination from '../../../interfaces/Pagination'
-import Collector from '../../../interfaces/Collector'
+import { IDBFunction, paginateQuery } from '../../../db/mongo'
+import { IViewCollectorsDB } from './viewCollectors'
 
-export default async (
-  models: { Collector: CollectorModel },
-  pagination: Pagination
-): Promise<{
-  collectors: Collector[]
-  pagination: Pagination
-}> => {
+const viewCollectors: IDBFunction<IViewCollectorsDB> = async (models, pagination) => {
   const collectors = await paginateQuery(models.Collector, pagination).exec()
   return { collectors, pagination }
 }
+
+export default viewCollectors

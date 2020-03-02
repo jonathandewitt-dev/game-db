@@ -1,9 +1,7 @@
-import { GameModel } from '../../../db/mongo'
-import Game from '../../../interfaces/Game'
+import { IDBFunction } from '../../../db/mongo'
+import { IAddGameDB } from './addGame'
 
-export default async (
-  models: { Game: GameModel },
-  game: Game
-): Promise<Game> => {
-  return models.Game.create(game)
-}
+const addGame: IDBFunction<IAddGameDB> = async (models, game) =>
+  models.Game.create(game)
+
+export default addGame

@@ -1,9 +1,7 @@
-import { CollectorModel } from '../../../db/mongo'
-import Collector from '../../../interfaces/Collector'
+import { IDBFunction } from '../../../db/mongo'
+import { IAddCollectorDB } from './addCollector'
 
-export default async (
-  models: { Collector: CollectorModel },
-  collector: Collector
-): Promise<Collector> => {
-  return models.Collector.create(collector)
-}
+const addCollector: IDBFunction<IAddCollectorDB> = async (models, collector) =>
+  models.Collector.create(collector)
+
+export default addCollector

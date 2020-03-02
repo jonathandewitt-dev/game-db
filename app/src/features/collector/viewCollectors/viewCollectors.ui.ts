@@ -1,16 +1,16 @@
-import Collector from '../../../interfaces/Collector'
-import Pagination from '../../../interfaces/Pagination'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { IViewCollectorsUI } from './viewCollectors'
 
-export default ({
+const viewCollectors: IUIFunction<IViewCollectorsUI<IUIReturnType>> = ({
   collectors,
   pagination,
-}: {
-  collectors: Collector[]
-  pagination: Pagination
-}): string =>
-  collectors.map(c => `${c.id}\t"${c.displayName}"\tCreated: ${c.createdDate}`)
+}) =>
+  collectors
+    .map(c => `${c.id}\t"${c.displayName}"\tCreated: ${c.createdDate}`)
     .concat([
       '',
       `Page limit: ${pagination.limit}`,
     ])
     .join('\n')
+
+export default viewCollectors

@@ -1,25 +1,22 @@
-import Collector from '../../../interfaces/Collector'
-import Game from '../../../interfaces/Game'
-import Pagination from '../../../interfaces/Pagination'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { IViewGamesForCollectorUI } from './viewGamesForCollector'
 
-export default ({
-  collector,
+const viewGamesForCollector: IUIFunction<IViewGamesForCollectorUI<IUIReturnType>> = ({
+  collector: c,
   games,
   pagination,
-}: {
-  collector: Collector
-  games: Game[]
-  pagination: Pagination
-}): string => {
+}) => {
   const lines = [
-    `Collector: ${collector.displayName} (${collector.id})\tCreated: ${collector.createdDate}`,
+    `Collector: ${c.displayName} (${c.id})\tCreated: ${c.createdDate}`,
     '',
     'id\ttitle'
   ].concat(
-    games.map(({ id, title, createdDate }) => `${id}\t"${title}"\tCreated: ${createdDate}`)
+    games.map(g => `${g.id}\t"${g.title}"\tCreated: ${g.createdDate}`)
   ).concat([
     '',
     `Page limit: ${pagination.limit}`
   ])
   return lines.join('\n')
 }
+
+export default viewGamesForCollector

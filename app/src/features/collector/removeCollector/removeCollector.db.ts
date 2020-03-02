@@ -1,10 +1,7 @@
-import { CollectorModel } from '../../../db/mongo'
-import Identifier from '../../../interfaces/Identifier'
-import Collector from '../../../interfaces/Collector'
+import { IDBFunction } from '../../../db/mongo'
+import { IRemoveCollectorDB } from './removeCollector'
 
-export default async (
-  models: { Collector: CollectorModel },
-  collectorId: Identifier
-): Promise<Collector> => {
-  return models.Collector.findByIdAndDelete(collectorId)
-}
+const removeCollector: IDBFunction<IRemoveCollectorDB> = async (models, collectorId) =>
+  models.Collector.findByIdAndDelete(collectorId)
+
+export default removeCollector

@@ -1,6 +1,7 @@
-import { Model, Document } from 'mongoose'
-import Identifier from '../../../interfaces/Identifier'
-import Game from '../../../interfaces/Game'
+import { IDBFunction } from '../../../db/mongo'
+import { IRemoveGameDB } from './removeGame'
 
-export default async (models: { Game: Model<Game & Document, {}> }, gameId: Identifier): Promise<Game> =>
+const removeGame: IDBFunction<IRemoveGameDB> = async (models, gameId) =>
   models.Game.findByIdAndDelete(gameId)
+
+export default removeGame

@@ -11,6 +11,12 @@ import addCollector from '../../features/collector/addCollector/addCollector.ui'
 import removeCollector from '../../features/collector/removeCollector/removeCollector.ui'
 import viewCollectors from '../../features/collector/viewCollectors/viewCollectors.ui'
 
+// Types
+export type IUIReturnType = string
+export interface IUIFunction<T extends (...args: any) => any> {
+  (...funcArgs: Parameters<T>): string
+}
+
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default async () => Promise.resolve({
   // Game

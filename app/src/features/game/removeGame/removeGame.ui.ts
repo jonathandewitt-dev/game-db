@@ -1,4 +1,7 @@
-import Game from '../../../interfaces/Game'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { IRemoveGameUI } from './removeGame'
 
-export default ({ id, title, createdDate }: Game): string =>
-  `-${id}\t"${title}"\tCreated: ${createdDate}`
+const removeGame: IUIFunction<IRemoveGameUI<IUIReturnType>> = g =>
+  `-${g.id}\t"${g.title}"\tCreated: ${g.createdDate}`
+
+export default removeGame

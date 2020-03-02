@@ -1,4 +1,7 @@
-import Collector from '../../../interfaces/Collector'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { IAddCollectorUI } from './addCollector'
 
-export default ({ id, displayName, createdDate }: Collector): string =>
-  `${id}\t"${displayName}"\tCreated: ${createdDate}`
+const addCollector: IUIFunction<IAddCollectorUI<IUIReturnType>> = c =>
+  `${c.id}\t"${c.displayName}"\tCreated: ${c.createdDate}`
+
+export default addCollector

@@ -1,4 +1,7 @@
-import Game from '../../../interfaces/Game'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { IAddGameUI } from './addGame'
 
-export default ({ id, title, createdDate }: Game): string =>
-  `${id}\t"${title}"\tCreated: ${createdDate}`
+const addGame: IUIFunction<IAddGameUI<IUIReturnType>> = g =>
+  `${g.id}\t"${g.title}"\tCreated: ${g.createdDate}`
+
+export default addGame

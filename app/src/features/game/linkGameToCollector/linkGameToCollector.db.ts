@@ -1,17 +1,15 @@
-import { GameModel, CollectorModel } from '../../../db/mongo'
-import Identifier from '../../../interfaces/Identifier'
-import Collector from '../../../interfaces/Collector'
-import Game from '../../../interfaces/Game'
+import { IDBFunction } from '../../../db/mongo'
+import { ILinkGameToCollectorDB } from './linkGameToCollector'
 
-export default async (
-  models: { Game: GameModel, Collector: CollectorModel },
-  collectorID: Identifier,
-  gameId: Identifier,
-): Promise<{
-  collector: Collector
-  game: Game
-}> => {
-  const collector = await models.Collector.findById(collectorID).populate({ path: 'games' })
+const linkGameToCollector: IDBFunction<ILinkGameToCollectorDB> = async (
+  models,
+  collectorID,
+  gameId
+) => {
+  const collector = await models.Collector
+    .findById(collectorID)
+    .populate({ path: 'games' })
+
   const game = await models.Game.findById(gameId)
 
   if (!collector.games.includes(gameId)) {
@@ -21,3 +19,5 @@ export default async (
 
   return { collector, game }
 }
+
+export default linkGameToCollector

@@ -1,16 +1,15 @@
-import Game from '../../../interfaces/Game'
-import Pagination from '../../../interfaces/Pagination'
+import { IUIFunction, IUIReturnType } from '../../../ui/cli'
+import { IViewGamesUI } from './viewGames'
 
-export default ({
+const viewGames: IUIFunction<IViewGamesUI<IUIReturnType>> = ({
   games,
   pagination,
-}: {
-  games: Game[]
-  pagination: Pagination
-}): string =>
+}) =>
   games.map(g => `${g.id}\t"${g.title}"\tCreated: ${g.createdDate}`)
     .concat([
       '',
       `Page limit: ${pagination.limit}`
     ])
     .join('\n')
+
+export default viewGames

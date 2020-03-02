@@ -3,7 +3,7 @@ import Collector from '../../../interfaces/Collector'
 import Game from '../../../interfaces/Game'
 import Pagination from '../../../interfaces/Pagination'
 
-interface GamesForCollectorUI<T> {
+export interface IViewGamesForCollectorUI<T> {
   ({
     collector,
     games,
@@ -15,7 +15,7 @@ interface GamesForCollectorUI<T> {
   }): T
 }
 
-interface GetGamesForCollectorDB {
+export interface IViewGamesForCollectorDB {
   (collectorID: Identifier, pagination: Pagination): Promise<{
     collector: Collector
     games: Game[]
@@ -24,8 +24,8 @@ interface GetGamesForCollectorDB {
 }
 
 export default async <T>(
-  ui: GamesForCollectorUI<T>,
-  db: GetGamesForCollectorDB,
+  ui: IViewGamesForCollectorUI<T>,
+  db: IViewGamesForCollectorDB,
   collectorId: Identifier,
   pagination: Pagination,
 ): Promise<T> =>
