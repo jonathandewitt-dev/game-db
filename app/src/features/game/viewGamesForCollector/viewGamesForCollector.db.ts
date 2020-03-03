@@ -12,7 +12,11 @@ const viewGamesForCollector: IDBFunction<IViewGamesForCollectorDB> = async (
     _id: { $in: collector.games }
   }).exec()
 
-  return { collector, games, pagination }
+  return {
+    collector: collector.toObject(),
+    games: games.map(g => g.toObject()),
+    pagination,
+  }
 }
 
 export default viewGamesForCollector

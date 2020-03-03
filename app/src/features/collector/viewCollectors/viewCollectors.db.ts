@@ -3,7 +3,10 @@ import { IViewCollectorsDB } from './viewCollectors'
 
 const viewCollectors: IDBFunction<IViewCollectorsDB> = async (models, pagination) => {
   const collectors = await paginateQuery(models.Collector, pagination).exec()
-  return { collectors, pagination }
+  return {
+    collectors: collectors.map(c => c.toObject()),
+    pagination,
+  }
 }
 
 export default viewCollectors

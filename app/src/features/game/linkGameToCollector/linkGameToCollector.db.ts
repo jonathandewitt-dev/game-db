@@ -17,7 +17,10 @@ const linkGameToCollector: IDBFunction<ILinkGameToCollectorDB> = async (
     await collector.save()
   }
 
-  return { collector, game }
+  return {
+    collector: collector.toObject(),
+    game: game.toObject(),
+  }
 }
 
 export default linkGameToCollector
