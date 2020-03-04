@@ -1,6 +1,6 @@
 # Project: GameDB
 
-This project was created using (vscode-remote-try-node)[https://github.com/Microsoft/vscode-remote-try-node] and then heavily modified to:
+This project was created using [vscode-remote-try-node](https://github.com/Microsoft/vscode-remote-try-node) and then heavily modified to:
 - Make VSCode-specific config optional
 - Support multiple roots
 - Add Jest testing + debugging
